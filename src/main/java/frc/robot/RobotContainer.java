@@ -7,15 +7,14 @@
 
 package frc.robot;
 
-// import java.util.ArrayList;
-
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-
+//important import to include (nice alliteration xD)
 import frc.robot.subsystems.ExampleSubsystem;
-import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.Command; 
 import frc.robot.subsystems.DriveTrain;
+//make sure to import the subsystem DriveTrain into RobotContainer
 import frc.robot.commands.ExampleCommand;
 
 /**
@@ -26,21 +25,14 @@ import frc.robot.commands.ExampleCommand;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
+  private Joystick leftJoy;
+  private Joystick rightJoy;
+
   public ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   public DriveTrain drive;
 
   public ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-
-  public Joystick leftJoy;
-  public Joystick rightJoy;
-  //bug 3
-  //making the instance variables public instead of private
-  //this can be problematic when you need to access this variable outside of the RobotContainer Class 
-  //and the other class has same named vairable
-  //this is why we need getter methods for these variables
-
-  
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -49,13 +41,18 @@ public class RobotContainer {
     // Configure the button bindings
     leftJoy = new Joystick(0);
     rightJoy = new Joystick(1);
+    
     drive = new DriveTrain();
     configureButtonBindings();
   }
 
-  //bug 4
-  //not having at getter method for both leftJoy and rightJoy
-  //this can be problematic when you need to access these variables outside of this class.
+
+  public Joystick getLeftJoy(){
+    return leftJoy;
+  }
+  public Joystick getRightJoy(){
+    return rightJoy;
+  }
 
   /**
    * Use this method to define your button->command mappings.  Buttons can be created by
